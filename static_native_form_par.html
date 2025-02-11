@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Property Acknowledgement Receipt Form</title>
+<style>
+body {
+  font-family: sans-serif;
+}
+.container {
+  width: 80%;
+  margin: 0 auto;
+  padding: 20px;
+}
+.form-group {
+  margin-bottom: 15px;
+}
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+input[type="text"],
+input[type="number"],
+textarea,
+input[type="date"] { /* Added input[type="date"] */
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px; /* Added margin for spacing */
+}
+th, td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+th {
+  background-color: #f2f2f2;
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>PROPERTY ACKNOWLEDGEMENT RECEIPT FORM</h1>
+  <form id="receiptForm">
+    
+  
+    
+    <!-- Form fields (same as before) -->
+    <div class="form-group">
+      <label for="entityName">Entity Name:</label>
+      <input type="text" id="entityName" name="entityName">
+    </div>
+    <div class="form-group">
+      <label for="parNo">PAR No.:</label>
+      <input type="text" id="parNo" name="parNo">
+    </div>
+    <div class="form-group">
+      <label for="fundCluster">Fund Cluster:</label>
+      <input type="text" id="fundCluster" name="fundCluster">
+    </div>
+    <div class="form-group">
+      <label for="quantity">Quantity:</label>
+      <input type="number" id="quantity" name="quantity">
+    </div>
+    <div class="form-group">
+      <label for="officeSchool">Office/School:</label>
+      <input type="text" id="officeSchool" name="officeSchool">
+    </div>
+    <div class="form-group">
+      <label for="unit">Unit:</label>
+      <input type="text" id="unit" name="unit">
+    </div>
+    <div class="form-group">
+      <label for="serialNo">Serial No./Product No.:</label>
+      <input type="text" id="serialNo" name="serialNo">
+    </div>
+    <div class="form-group">
+      <label for="item">Item:</label>
+      <input type="text" id="item" name="item">
+    </div>
+    <div class="form-group">
+      <label for="description">Description:</label>
+      <textarea id="description" name="description"></textarea>
+    </div>
+    <div class="form-group">
+      <label for="model">Model:</label>
+      <input type="text" id="model" name="model">
+    </div>
+    <div class="form-group">
+      <label for="propertyNo">Property No.:</label>
+      <input type="text" id="propertyNo" name="propertyNo">
+    </div>
+    <div class="form-group">
+      <label for="total">Total:</label>
+      <input type="number" id="total" name="total">
+    </div>
+    <div class="form-group">
+      <label for="sourceOfFund">Source of Fund:</label>
+      <input type="text" id="sourceOfFund" name="sourceOfFund">
+    </div>
+    <div class="form-group">
+      <label for="note">Note:</label>
+      <textarea id="note" name="note"></textarea>
+    </div>
+    <div class="form-group">
+      <label for="dateAcquired">Date Acquired:</label>
+      <input type="date" id="dateAcquired" name="dateAcquired">
+    </div>
+    <div class="form-group">
+      <label for="receivedBy">Received by:</label>
+      <input type="text" id="receivedBy" name="receivedBy">
+    </div>
+    <div class="form-group">
+      <label for="receiveFrom">Receive from:</label>
+      <input type="text" id="receiveFrom" name="receiveFrom">
+    </div>
+    <div class="form-group">
+      <label for="positionReceived">Position (Received By):</label>
+      <input type="text" id="positionReceived" name="positionReceived">
+    </div>
+    <div class="form-group">
+      <label for="positionReceive">Position (Received From):</label>
+      <input type="text" id="positionReceive" name="positionReceive">
+    </div>
+    <div class="form-group">
+      <label for="officeSchoolReceived">Office/School (Received By):</label>
+      <input type="text" id="officeSchoolReceived" name="officeSchoolReceived">
+    </div>
+    <div class="form-group">
+      <label for="officeSchoolReceive">Office/School (Received From):</label>
+      <input type="text" id="officeSchoolReceive" name="officeSchoolReceive">
+    </div>
+    <div class="form-group">
+      <label for="dateReceived">Date (Received By):</label>
+      <input type="date" id="dateReceived" name="dateReceived">
+    </div>
+    <div class="form-group">
+      <label for="dateReceive">Date (Received From):</label>
+      <input type="date" id="dateReceive" name="dateReceive">
+    </div>
+    <!-- ... rest of the form fields ... -->
+    
+    
+    
+    <button type="submit">CREATE</button>
+  </form>
+</div>
+
+<div class="container" id="dashboard-container">
+  <h1>Property Acknowledgement Receipt Data</h1>
+  <table id="receiptData">
+    <thead>
+      <tr>
+        <th>Field</th>
+        <th>Value</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+</div>
+
+<script>
+  const receiptForm = document.getElementById('receiptForm');
+  const receiptData = document.getElementById('receiptData').querySelector('tbody');
+
+  receiptForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const formData = new FormData(receiptForm);
+    const data = {};
+    formData.forEach((value, key) => data[key] = value);
+
+    receiptData.innerHTML = ''; // Clear previous data
+
+    for (const [key, value] of Object.entries(data)) {
+      const row = receiptData.insertRow();
+      const keyCell = row.insertCell();
+      const valueCell = row.insertCell();
+      keyCell.textContent = key;
+      valueCell.textContent = value;
+    }
+  });
+</script>
+</body>
+</html>
